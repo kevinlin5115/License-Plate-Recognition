@@ -59,7 +59,7 @@ python train.py --data path/to/data.yaml --epochs 100 --img-size 640 --batch-siz
 
 ## Example Outputs
 
-Here are some example outputs from our license plate detection and recognition system:
+Here are some example outputs from my license plate detection and recognition system:
 
 ### Example 1: Clear, front-facing license plate
 
