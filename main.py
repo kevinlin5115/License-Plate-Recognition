@@ -1,9 +1,9 @@
 import cv2
 import os
-import numpy as np
 from pathlib import Path
 from plate_detector import PlateDetector
 from ocr_engine import OCREngine
+from arg_parser import parse_args
 
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
@@ -15,7 +15,7 @@ def process_image(image_path, plate_detector, ocr_engine):
     for detection in detections:
         x1, y1, x2, y2 = detection['bbox']
         plate_image = image[y1:y2, x1:x2]
-        plate_text = ocr_engine.recognize(plate_image)
+        plate_text  = ocr_engine.recognize(plate_image)
         results.append({
             'bbox': detection['bbox'],
             'score': detection['score'],
@@ -35,12 +35,12 @@ def visualize_results(image, results):
     return vis_image
 
 def main():
-    model_path = './model.pt'
-    plate_detector = PlateDetector(model_path)
+    args = parse_args()
+    plate_detector = PlateDetector(args.model, conf_threshold=args.conf_threshold, device=args.device)
     ocr_engine = OCREngine()
 
-    img_dir = Path('./test')
-    img_files = list(img_dir.glob('*.jpg'))
+    img_dir = Path(args.img_dir)
+    img_files = list(img_dir.glob('*.jpg')) + list(img_dir.glob('*.png'))
 
     for img_file in img_files:
         print(f"Processing {img_file}")
