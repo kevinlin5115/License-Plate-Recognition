@@ -1,0 +1,9 @@
+# Ignore directories 
+/data/ 
+/runs/ 
+/test/ 
+# Ignore files 
+/data.yaml 
+/yolov8n.pt 
+/model.pt 
+/__pycache__/ 
