@@ -4,6 +4,5 @@
 /test/ 
 # Ignore files 
 /data.yaml 
-/yolov8n.pt 
-/model.pt 
+/yolov8n.pt
 /__pycache__/ 
